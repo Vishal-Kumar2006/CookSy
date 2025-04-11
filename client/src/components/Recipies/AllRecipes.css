@@ -1,0 +1,38 @@
+.AllRecipies {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    animation: slide-in 0.2s linear;
+}
+  
+
+.recipe:hover {
+    cursor: pointer;
+}
+
+@media screen and (max-width:820px) {
+    .AllRecipies {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+}
+
+@media screen and (max-width:450px) {
+    .AllRecipies {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 1rem;
+    }
+}
+
+@keyframes slide-in {
+    from {
+      transform: translateX(150vw) scale(2, 1);
+    }
+  
+    to {
+      transform: translateX(0) scale(1, 1);
+    }
+  }
+  

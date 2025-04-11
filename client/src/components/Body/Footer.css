@@ -1,0 +1,23 @@
+.Footer {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10%;
+    padding-right: 10%;
+    background-color: rgb(11, 0, 0);
+    box-shadow: 0 -5rem 10rem rgb(0, 0, 0);
+    margin-top: 10rem;
+}
+
+.footer-components {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.footer-components a {
+    text-decoration: none;
+    color: rgb(0, 8, 255);
+    margin: 1rem;
+}
