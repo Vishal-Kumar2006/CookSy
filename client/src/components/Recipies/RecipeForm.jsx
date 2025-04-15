@@ -11,10 +11,25 @@ const animatedComponents = makeAnimated();
 
 const RecipeForm = () => {
   const meals = ["Breakfast", "Lunch", "Dinner", "Brunch", "Snacks", "Dessert"];
-  const foodTypes = [ "Vegetarian", "Non-Vegetarian", "Vegan", "Gluten-Free", "Keto",
-                      "Diabetic-Friendly", "Paleo", "High-Protein", "Low-Carb",
+  const foodTypes = [
+    "Vegetarian",
+    "Non-Vegetarian",
+    "Vegan",
+    "Gluten-Free",
+    "Keto",
+    "Diabetic-Friendly",
+    "Paleo",
+    "High-Protein",
+    "Low-Carb",
   ];
-  const cookingMethods = [ "Fried", "Baked", "Grilled", "Steamed", "Boiled", "Raw"];
+  const cookingMethods = [
+    "Fried",
+    "Baked",
+    "Grilled",
+    "Steamed",
+    "Boiled",
+    "Raw",
+  ];
   const cookingTimes = [
     { label: "Under 10 minutes", value: 5 },
     { label: "10 minutes", value: 10 },
@@ -66,11 +81,12 @@ const RecipeForm = () => {
       } catch (err) {
         console.error("Image upload failed", err);
       }
-    }  else {
+    } else {
       setRecipeData((prev) => ({
         ...prev,
-        [name]: type === "checkbox" 
-          ? checked
+        [name]:
+          type === "checkbox"
+            ? checked
             : name === "cost" || name === "cookingTime"
             ? Number(value)
             : value,
@@ -103,6 +119,7 @@ const RecipeForm = () => {
 
         <label>Recipe Process</label>
         <textarea
+          id="recipe-description"
           name="instructions"
           onChange={handleChange}
           value={recipeData.instructions}
@@ -121,7 +138,7 @@ const RecipeForm = () => {
         <label>Recipe Ingredients</label>
         <Select
           className="recipe-input"
-          id='recipe-ingredients'
+          id="recipe-ingredients"
           isMulti
           closeMenuOnSelect={false}
           components={animatedComponents}
@@ -146,55 +163,79 @@ const RecipeForm = () => {
           className="recipe-input"
         />
 
-        <label>Meal Type</label>
-        <select
-          name="mealType"
-          className="recipe-input"
-          onChange={handleChange}
-          value={recipeData.mealType}
-        >
-          {meals.map((meal) => (
-            <option key={meal} value={meal}> {meal} </option>
-          ))}
-        </select>
+        <div className="recipe-dropdown">
+          <div className="single-dropdown">
+            <label>Meal Type</label>
+            <select
+              name="mealType"
+              className="recipe-input"
+              onChange={handleChange}
+              value={recipeData.mealType}
+            >
+              {meals.map((meal) => (
+                <option key={meal} value={meal}>
+                  {" "}
+                  {meal}{" "}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="single-dropdown">
+            <label>Food Type</label>
+            <select
+              name="foodType"
+              className="recipe-input"
+              onChange={handleChange}
+              value={recipeData.foodType}
+            >
+              {foodTypes.map((type) => (
+                <option key={type} value={type}>
+                  {" "}
+                  {type}{" "}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
 
-        <label>Food Type</label>
-        <select
-          name="foodType"
-          className="recipe-input"
-          onChange={handleChange}
-          value={recipeData.foodType}
-        >
-          {foodTypes.map((type) => (
-            <option key={type} value={type}> {type} </option>
-          ))}
-        </select>
+        <div className="recipe-dropdown">
+          <div className="single-dropdown">
+            <label>Cooking Method</label>
+            <select
+              name="cookingMethod"
+              className="recipe-input"
+              onChange={handleChange}
+              value={recipeData.cookingMethod}
+            >
+              {cookingMethods.map((method) => (
+                <option key={method} value={method}>
+                  {" "}
+                  {method}{" "}
+                </option>
+              ))}
+            </select>
+          </div>
 
-        <label>Cooking Method</label>
-        <select
-          name="cookingMethod"
-          className="recipe-input"
-          onChange={handleChange}
-          value={recipeData.cookingMethod}
-        >
-          {cookingMethods.map((method) => (
-            <option key={method} value={method}> {method} </option>
-          ))}
-        </select>
+          <div className="single-dropdown">
 
-        <label>Cooking Time</label>
-        <select
-          name="cookingTime"
-          className="recipe-input"
-          onChange={handleChange}
-          value={recipeData.cookingTime}
-        >
-          {cookingTimes.map((time) => (
-            <option key={time.value} value={time.value}> {time.label} </option>
-          ))}
-        </select>
+          <label>Cooking Time</label>
+          <select
+            name="cookingTime"
+            className="recipe-input"
+            onChange={handleChange}
+            value={recipeData.cookingTime}
+          >
+            {cookingTimes.map((time) => (
+              <option key={time.value} value={time.value}>
+                {" "}
+                {time.label}{" "}
+              </option>
+            ))}
+          </select>
+          </div>
+        </div>
 
-        <button type="submit">Create Recipe</button>
+        <button className="form-button" type="submit">Create Recipe</button>
       </form>
     </div>
   );

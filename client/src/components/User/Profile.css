@@ -1,0 +1,28 @@
+.Profile {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-info {
+    padding: 1rem; 
+}
+
+.user-info h4{
+  color: white;
+  text-align: center;
+}
+
+#user-name {
+    color: white;
+    font-size: 2rem;
+}
+
+
+#user-Image {
+    height: 10rem;
+    width: 10rem;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 0 1rem rgb(255, 0, 0);
+}
+

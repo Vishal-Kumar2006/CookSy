@@ -4,11 +4,13 @@ const {
   generateRefreshToken,
 } = require("../utils/generateTokens");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const signUpController = async (req, res) => {
   try {
     const { name, image, email, password } = req.body;
-
+    if(!name || !image || !email ||!password) res.status(500).json({message:"Input is required."});
+    
     if(await User.findOne({ email: email })) res.status(409).json({message:"User already Exist with this Email."})
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -49,10 +51,9 @@ const loginController = async (req, res) => {
 
     if (!currUser)  res.status(404).json({ message: "User not Exist with this email !"});
 
-    console.log(currUser);
-
     // ✅ Compare password
     const isPasswordCorrect = await bcrypt.compare(password, currUser.password);
+    console.log(isPasswordCorrect)
     if (!isPasswordCorrect) {
       return res.status(401).json({ message: "Invalid credentials" });
     }
@@ -88,11 +89,14 @@ const getProfileController = async (req, res) => {
     // Assuming `req.user` is set by an auth middleware after verifying the access token
     const userId = req.user.id;
 
+    console.log(`User Id is : ${userId}`);
     const user = await User.findById(userId).select("-password"); // exclude password
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
+    
+    console.log(user);
     res.status(200).json({ user });
   } catch (err) {
     console.error("Error fetching user profile:", err);
@@ -121,9 +125,6 @@ const logoutController = (req, res) => {
   }
 };
 
-const jwt = require("jsonwebtoken");
 
 
-
-
-module.exports = { signUpController, loginController };
+module.exports = { signUpController, loginController, getProfileController, logoutController };

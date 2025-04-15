@@ -1,9 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { IoMenu , IoCloseSharp } from "react-icons/io5";
 import "./Navbar.css";
+import { isCookie } from "react-router-dom";
 
 const Navbar = () => {
   const [menubtn, setMenuBtn] = useState(true);
+  const [user, setUser] = useState(null); // store user info if logged in
+
+  useEffect(() => {
+    // Check login status on mount
+    axios.get("http://localhost:5000/user/profile", { withCredentials: true })
+      .then((res) => {
+        setUser(res.data.user); // user is logged in
+      })
+      .catch((err) => {
+        setUser(null); // not logged in
+      });
+  }, []);
+
+  
   return (
     <div className="Navbar">
       <div className="logo">
@@ -21,7 +37,13 @@ const Navbar = () => {
           <a href="/recipes/new" onClick={() => setMenuBtn(!menubtn)}>Create Recipe</a>
         </div>
         <div className="user">
-          <a href="/user/login" onClick={() => setMenuBtn(!menubtn)}>Login</a>
+        {user ? (
+            <a href="/user/profile" onClick={() => setMenuBtn(!menubtn)}>
+              👤
+            </a>
+          ) : (
+            <a href="/user/login" onClick={() => setMenuBtn(!menubtn)}>Login</a>
+          )}
         </div>
       </div>
     </div>

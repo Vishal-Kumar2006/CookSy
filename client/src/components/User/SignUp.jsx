@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import makeAnimated from "react-select/animated";
 import axios from "axios";
 import "./Login.css";
 
@@ -59,8 +58,11 @@ const SignUp = () => {
       navigate("/")
     } catch (error) {
       console.error("Error:", error);
+      
       if (error.response && error.response.status === 409) {
         alert("User already exists with this email.");
+      } else if (error.response && error.response.status === 428) {
+        alert("Input Field is Required.");
       } else {
         alert("Something went wrong during signup.");
       }
@@ -74,13 +76,14 @@ const SignUp = () => {
   return (
     <div className="SignUp">
       <h3>Craete New Accout at SAHK</h3>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="name">Enter Name</label>
         <input
           type="text"
           name="name"
           id="name"
           className="input"
+          required
           onChange={handleChange}
           value={userData.name}
           autoComplete="name"
@@ -92,6 +95,7 @@ const SignUp = () => {
           name="image"
           id="image"
           className="input"
+          required
           onChange={handleChange}
           autoComplete="image"
         />
@@ -102,6 +106,7 @@ const SignUp = () => {
           name="email"
           id="email"
           className="input"
+          required
           onChange={handleChange}
           value={userData.email}
           autoComplete="email"
@@ -113,12 +118,13 @@ const SignUp = () => {
           name="password"
           id="password"
           className="input"
+          required
           onChange={handleChange}
           value={userData.password}
           autoComplete="password"
         />
 
-        <button onClick={handleSubmit}>Craete New Account</button>
+        <button type="submit" >Craete New Account</button>
       </form>
 
       <button onClick={logInRedirect}> Have an Account </button>
