@@ -1,0 +1,93 @@
+.Recipe-catagory-name {
+  margin-bottom: 0.2rem;
+  font-size: 2rem;
+  color: aliceblue;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.Recipe-Catagories-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: inherit;
+}
+
+.Recipe-Catagories-mealtype {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 1rem 0;
+  scrollbar-width: none;
+}
+
+.Recipe-Catagories-mealtype::-webkit-scrollbar {
+  display: none;
+}
+
+.MealType-catagory {
+  min-width: 30rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 1rem 1rem 0 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.MealType-catagory:hover {
+  cursor: pointer;
+}
+
+.MealType-catagory img {
+  display: flex;
+  height: 18rem;
+  object-fit: cover;
+  background-color: #9f9f9f;
+}
+
+.MealType-catagory div {
+  background-color: #ffffff;
+  padding: 2rem;
+}
+
+.MealType-catagory-heading {
+  font-size: 2rem;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.MealType-catagory-desciption {
+  font-size: 1rem;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.scroll-btn {
+  position: absolute;
+  z-index: 10;
+  background: white;
+  color: #000;
+  border: none;
+  padding: 0.7rem 1rem;
+  border-radius: 50%;
+  font-size: 2rem;
+}
+
+.left {
+  background-color: #37373777;
+  backdrop-filter: blur(4px);
+  left: 0.3%;
+  margin-top: 13rem;
+  align-items: center;
+}
+
+.right {
+  background-color: #37373777;
+  backdrop-filter: blur(4px);
+  right: -2.3%;
+  margin-top: 0.5rem;
+}

@@ -12,7 +12,7 @@
 }
 
 .RecipeCard:hover {
-  box-shadow: 0 0 5rem rgb(255, 0, 0);
+  box-shadow: 0 0 70px red;
 }
 
 .recipe-image {
@@ -22,23 +22,24 @@
 }
 
 .recipe-info {
-  background-color: #470000;
+  background-color: #b8a9008e;
   color: white;
   display: flex;
   flex-direction: column;
   border-radius: 0 0 1rem 1rem;
   padding: 1rem;
   padding-top: 0;
-
-  animation: appear 1.5s linear;
-  animation-timeline: view();
-  animation-range: entry 0% cover 20%;
 }
 
 .recipe-info-details {
   display: flex;
   text-align: center;
   justify-content: space-between;
+}
+
+.recipe-info-details h3 {
+  font-weight: bolder;
+  color: #f6ff00;
 }
 
 .recipe-cost {
@@ -61,6 +62,7 @@
 
 .recipe-info button:hover {
   background-color: rgb(255, 250, 105);
+  backdrop-filter: blur(10px);
 }
 
 .recipe-name {
@@ -79,4 +81,3 @@
     transition: 0.2s linear;
   }
 }
-

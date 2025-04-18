@@ -1,5 +1,6 @@
 .Navbar {
-    background-color: #650000af;
+    background-color: #6500008e;
+    backdrop-filter: blur(10px);
     height: 4rem;
     display: flex;
     justify-content: space-between;
