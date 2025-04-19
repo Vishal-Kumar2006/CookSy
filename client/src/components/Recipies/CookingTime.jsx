@@ -43,6 +43,7 @@ const CookingTime = () => {
 
     return(
         <div className="CookingTime">
+            <h2 className="Recipe-catagory-name">Recepies as Cooking Time</h2>
             <SlidingBlocks data={cookingTimesDetails}/>
         </div>
     )

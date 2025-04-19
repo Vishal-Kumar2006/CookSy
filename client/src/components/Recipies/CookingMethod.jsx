@@ -4,13 +4,13 @@ const CookingMethod = () => {
 
     const cookingMethodsDetails = [
         {
-          image: "",
+          image: "https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg?auto=compress&cs=tinysrgb&w=600",
           heading: "Fried",
           description:
             "Cooking food by submerging it in hot oil or fat.\nIt creates a crispy texture and rich flavor, commonly used for snacks and comfort foods.\nDeep frying and shallow frying are the two popular variations."
         },
         {
-          image: "",
+          image: "https://images.pexels.com/photos/1566837/pexels-photo-1566837.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
           heading: "Baked",
           description:
             "Uses dry heat in an oven to cook food evenly.\nIdeal for bread, pastries, casseroles, and meats.\nThis method enhances flavor and texture while preserving moisture."
@@ -43,7 +43,7 @@ const CookingMethod = () => {
 
     return(
         <div className="CookingMethod">
-            <h3>Cooking Method</h3>
+            <h2 className="Recipe-catagory-name">Cooking Method</h2>
             <SlidingBlocks data={cookingMethodsDetails} />
         </div>
     )

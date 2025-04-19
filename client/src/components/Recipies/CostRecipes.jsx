@@ -4,7 +4,7 @@ const CostRecepies = () => {
 
     const priceRanges = [
         {
-          price: 10,
+          image: "",
           heading: "Super Budget",
           description:
             "Ideal for ultra-low-cost street food or simple homemade snacks.\nThink samosas, boiled eggs, or small servings of tea or coffee.\nPerfect when you want a quick bite without spending much."
@@ -75,7 +75,7 @@ const CostRecepies = () => {
 
     return(
         <div className="CostRecepies">
-            <h2>Cost of Recepies</h2>
+           <h2 className="Recipe-catagory-name">Cost Wise Recipes per Plate </h2>
             <SlidingBlocks data={priceRanges}/>
         </div>
     )
