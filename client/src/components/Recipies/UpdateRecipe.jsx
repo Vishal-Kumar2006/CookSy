@@ -10,7 +10,7 @@ const CLOUDINARY_UPLOAD_PRESET = "SAHK-Project";
 const CLOUDINARY_FOLDER = "SAHK";
 const animatedComponents = makeAnimated();
 
-const RecipeForm = () => {
+const UpdateRecipe = () => {
   const meals = ["Breakfast", "Lunch", "Dinner", "Brunch", "Snacks", "Dessert"];
   const foodTypes = [
     "Vegetarian",

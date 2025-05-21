@@ -30,26 +30,26 @@ const RecipeDetails = () => {
     try{
       axios.delete(`http://localhost:5000/recipes/${recipe._id}/delete`)
       .then((response) => {
-        console.log(response.data);
-        alert("Recipe Deleted SucessFully.");
+        alert(response.data.message);
         navigate("/recipes");
       })
     } catch(error) {
-      console.log(error);
+      console.log(error.message);
     }
   }
-
-  
 
   if (!recipe) return <p>Loading recipe details...</p>;
 
   return (
     <div className="recipe-details">
-      {console.log(recipe)}
       <img src={recipe.image} alt="Recipe" className="recipe-details-image" />
       <h2 className="recipe-name">{recipe.name}</h2>
       <div className="recipe-deatil-info">
-        <p> <strong>Instructions:</strong> {recipe.instructions} </p>
+        <strong>Instructions:</strong> 
+        <ul> {recipe.instructions.map((ing, idx) => (
+          <li key={idx}> <b>Step {idx + 1} : </b> {  ing}</li>
+          ))}
+        </ul>
         <p> <strong>Cost Per Plate:</strong> ₹{recipe.cost} </p>
 
         <div>

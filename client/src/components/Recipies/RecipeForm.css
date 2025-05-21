@@ -33,8 +33,26 @@
     border-radius: 0.3rem;
 }
 
-#recipe-description {
- height: 15rem;
+.recipe-instructions {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.recipe-instructions textarea {
+  height: 5rem;
+}
+
+.recipe-instructions button {
+   align-items:start;
+   text-align: center;
+   justify-content: center;
+   font-size: 2rem;
+   margin: 0.5rem;
+   padding: 0.2rem;
+   background-color: red;
 }
 
 #recipe-image {
@@ -113,6 +131,16 @@
         border-radius: 0.2rem;
     }
 
+    .recipe-instructions textarea {
+        height: 3rem;
+      }
+      
+      .recipe-instructions button {
+         font-size: 1rem;
+         margin: 0.5rem;
+         padding: 0.2rem;
+      }
+
     .recipe-drop {
         width: 100%;
         padding: 0;
@@ -151,6 +179,23 @@
         margin-bottom: 1.5rem;
         border-radius: 0.2rem;
     }
+
+    .recipe-instructions {
+        display: block;
+    }
+
+    .recipe-instructions textarea {
+        height: 3rem;
+        font-size: 1rem;
+        margin-bottom: 0;
+        margin-top: 1rem;
+      }
+      
+      .recipe-instructions button {
+         font-size: 0.7rem;
+         margin: 0;
+         padding: 0;
+      }
 
     .recipe-drops {
         display: flex;

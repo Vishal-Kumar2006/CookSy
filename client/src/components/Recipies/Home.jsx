@@ -25,11 +25,11 @@ const Home = () => {
         <button>Search</button>
       </div>
 
-      <MealType/>
-      <FoodType/>
-      <CookingMethod/>
-      <CostRecepies/>
-      <CookingTime/>
+      <div className="home-types"> <MealType/> </div>
+      <div className="home-types"> <FoodType /> </div>
+      <div className="home-types"> <CookingMethod/>  </div>
+      <div className="home-types"> <CostRecepies/> </div>
+      <div className="home-types"> <CookingTime/> </div>
     </div>
   );
 };

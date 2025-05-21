@@ -41,9 +41,22 @@ const getRecipeById = async (req, res) => {
 };
 
 const updateRecipe = async (req, res) => {
-    const id = req.params;
-    console.log(id);
-    console.log(req.body);
+  const id = req.params;
+  console.log(id);
+  console.log(req.body);
+};
+
+const deleteRecipeById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    console.log( Recipe.findById(id))
+    const recipe = await Recipe.findByIdAndDelete(id);
+    if (!recipe) res.status(404).json({ message: "Recipe Not Found." });
+
+    res.status(200).json({ message: "Recipe Deleted SucessFully" });
+  } catch (error) {
+    res.status(500).json({ message: "Internal Server Error" });
+  }
 };
 
 module.exports = {
@@ -51,4 +64,5 @@ module.exports = {
   createNewRecipe,
   getRecipeById,
   updateRecipe,
+  deleteRecipeById,
 };

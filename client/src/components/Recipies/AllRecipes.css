@@ -2,7 +2,6 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
-    animation: slide-in 0.2s linear;
 }
   
 
@@ -26,13 +25,4 @@
     }
 }
 
-@keyframes slide-in {
-    from {
-      transform: translateX(150vw) scale(2, 1);
-    }
-  
-    to {
-      transform: translateX(0) scale(1, 1);
-    }
-  }
   

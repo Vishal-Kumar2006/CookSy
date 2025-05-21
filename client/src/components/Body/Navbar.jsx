@@ -39,7 +39,7 @@ const Navbar = () => {
         <div className="user">
         {user ? (
             <a href="/user/profile" onClick={() => setMenuBtn(!menubtn)}>
-              👤
+              <img src={user.image} alt="User Image"  className="user-image"/>
             </a>
           ) : (
             <a href="/user/login" onClick={() => setMenuBtn(!menubtn)}>Login</a>

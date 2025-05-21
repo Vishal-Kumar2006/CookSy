@@ -16,25 +16,25 @@ const CookingMethod = () => {
             "Uses dry heat in an oven to cook food evenly.\nIdeal for bread, pastries, casseroles, and meats.\nThis method enhances flavor and texture while preserving moisture."
         },
         {
-          image: "",
+          image: "https://images.pexels.com/photos/11968836/pexels-photo-11968836.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
           heading: "Grilled",
           description:
             "Involves cooking food over direct heat, usually on a grill.\nAdds a smoky flavor and charred texture, great for meats and vegetables.\nPopular for outdoor barbecues and health-conscious meals."
         },
         {
-          image: "",
+          image: "https://images.pexels.com/photos/8093872/pexels-photo-8093872.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
           heading: "Steamed",
           description:
             "Uses steam from boiling water to cook food gently.\nRetains nutrients, color, and natural taste—perfect for vegetables and seafood.\nA healthy and low-fat cooking method ideal for light meals."
         },
         {
-          image: "",
+          image: "https://images.pexels.com/photos/3893773/pexels-photo-3893773.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
           heading: "Boiled",
           description:
             "Involves cooking ingredients in bubbling water or broth.\nPerfect for pasta, rice, soups, and eggs.\nA simple method that softens food while infusing flavors if using broth."
         },
         {
-          image: "",
+          image: "https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
           heading: "Raw",
           description:
             "Food is consumed without any heat treatment.\nCommon in salads, fruits, sushi, and raw vegan dishes.\nMaintains all natural enzymes and nutrients, offering a fresh and clean taste."

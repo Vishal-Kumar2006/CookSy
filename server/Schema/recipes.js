@@ -9,7 +9,7 @@ const recipeSchema = new mongoose.Schema({
   }, 
   cost:{type: Number, default:500, required: true},
   ingredients: { type: Array, required: true },
-  instructions: { type: String, required: true },
+  instructions: { type: Array, required: true },
   mealType: { type: String, required: true },
   foodType:  { type: String, required: true },
   cookingMethod:  { type: String, required: true },

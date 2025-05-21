@@ -29,7 +29,7 @@ const SlidingBlocks = ({ data = [] }) => {
         >
           {data.map((item, i) => (
             <div className="MealType-catagory" onClick={handleClick} key={i}>
-              <img src={item.image === ""? null : item.image } alt="Recipe Type Image" /> 
+              <img src={item.image === ""? null : item.image } alt="Recipe Type Image" className="recipe-image" /> 
               <div>
                 <h3 className="MealType-catagory-heading">{item.heading}</h3>
                 <p className="MealType-catagory-desciption">{item.description}</p>
