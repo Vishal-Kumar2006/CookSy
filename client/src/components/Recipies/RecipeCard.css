@@ -4,7 +4,7 @@
   padding-bottom: 0;
   /* border: 2px solid white; */
   border-radius: 1rem;
-  box-shadow: 0 0 1rem rgba(157, 0, 0, 0.451);
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.451);
   transition: 0.2s ease-in-out;
   animation: appear 1.5s linear;
   animation-timeline: view();
@@ -12,7 +12,7 @@
 }
 
 .RecipeCard:hover {
-  box-shadow: 0 0 3rem red;
+  box-shadow: 0 0 2rem rgb(0, 0, 0);
 }
 
 .recipe-image {
@@ -22,7 +22,8 @@
 }
 
 .recipe-info {
-  background-color: #b8a9008e;
+  background-color: #5c540051;
+  backdrop-filter: blur(100px);
   color: white;
   display: flex;
   flex-direction: column;
@@ -49,7 +50,6 @@
   justify-content: center;
   font-weight: bolder;
 }
-
 
 .recipe-info button {
   font-size: 1.5rem;

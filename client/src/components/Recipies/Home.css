@@ -37,7 +37,7 @@
   margin-bottom: 8rem;
 }
 
-@media screen and (max-width:820px){
+@media screen and (max-width: 820px) {
   .Recipe-search-home {
     width: 100%;
     padding: 0rem;
@@ -46,21 +46,20 @@
     gap: 0.5rem;
   }
 
-  .Recipe-search-home input{
+  .Recipe-search-home input {
     font-size: 1.5rem;
     padding: 0.8rem;
     width: 80%;
   }
 
-  .Recipe-search-home button{
+  .Recipe-search-home button {
     font-size: 1.5rem;
     padding: 0.5rem;
     width: 25%;
   }
 }
 
-
-@media screen and (max-width:420px){ 
+@media screen and (max-width: 420px) {
   .Recipe-search-home {
     width: 100%;
     padding: 0rem;
@@ -69,13 +68,13 @@
     gap: 0.2rem;
   }
 
-  .Recipe-search-home input{
+  .Recipe-search-home input {
     font-size: 1.2rem;
     padding: 0.8rem;
     width: 100%;
   }
 
-  .Recipe-search-home button{
+  .Recipe-search-home button {
     font-size: 1rem;
     padding: 0.8rem;
     width: 25%;
