@@ -1,19 +1,19 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { IoMenu, IoCloseSharp } from "react-icons/io5";
 import "./Navbar.css";
 
 const Navbar = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menubtn, setMenuBtn] = useState(true);
   const [user, setUser] = useState(() => {
+    // Load user from localStorage on initial render
     const savedUser = localStorage.getItem("user");
     return savedUser ? JSON.parse(savedUser) : null;
   });
 
-  const navigate = useNavigate();
-
   useEffect(() => {
+    // Only call API if user is not in localStorage
     if (!user) {
       axios
         .get("https://sahk.onrender.com/user/profile", {
@@ -40,56 +40,54 @@ const Navbar = () => {
       .then(() => {
         setUser(null);
         localStorage.removeItem("user");
-        navigate("/"); // redirect to home after logout
       })
       .catch((err) => console.error(err));
   };
 
-  const handleNavigate = (path) => {
-    setMenuOpen(false);
-    navigate(path);
-  };
-
   return (
     <div className="Navbar">
-      <div className="logo" onClick={() => handleNavigate("/")}>
+      <div className="logo">
         <h2>SAHK</h2>
       </div>
-      <button className="menu-btn" onClick={() => setMenuOpen(!menuOpen)}>
-        {menuOpen ? (
-          <IoCloseSharp className="nav-menu" />
-        ) : (
+      <button className="menu-btn" onClick={() => setMenuBtn(!menubtn)}>
+        {menubtn ? (
           <IoMenu className="nav-menu" />
+        ) : (
+          <IoCloseSharp className="nav-menu" />
         )}
       </button>
-      <div className={`options ${menuOpen ? "open" : ""}`}>
+      <div className={`options ${!menubtn ? "open" : ""}`}>
         <div className="links">
-          <button onClick={() => handleNavigate("/")}>Home</button>
-          <button onClick={() => handleNavigate("/recipes")}>
+          <Link to="/" onClick={() => setMenuBtn(!menubtn)}>
+            Home
+          </Link>
+          <Link to="/recipes" onClick={() => setMenuBtn(!menubtn)}>
             All Recipes
-          </button>
-          <button onClick={() => handleNavigate("/fast-food")}>
+          </Link>
+          <Link to="/fast-food" onClick={() => setMenuBtn(!menubtn)}>
             Fast Food
-          </button>
-          <button onClick={() => handleNavigate("/fresh-food")}>
+          </Link>
+          <Link to="/fresh-food" onClick={() => setMenuBtn(!menubtn)}>
             Fresh Food
-          </button>
-          <button onClick={() => handleNavigate("/recipes/new")}>
+          </Link>
+          <Link to="/recipes/new" onClick={() => setMenuBtn(!menubtn)}>
             Create Recipe
-          </button>
+          </Link>
         </div>
         <div className="user">
           {user ? (
             <>
-              <button onClick={() => handleNavigate("/user/profile")}>
+              <Link to="/user/profile" onClick={() => setMenuBtn(!menubtn)}>
                 <img src={user.image} alt="User" className="user-image" />
-              </button>
+              </Link>
               <button onClick={handleLogout} className="logout-btn">
                 Logout
               </button>
             </>
           ) : (
-            <button onClick={() => handleNavigate("/user/login")}>Login</button>
+            <Link to="/user/login" onClick={() => setMenuBtn(!menubtn)}>
+              Login
+            </Link>
           )}
         </div>
       </div>
