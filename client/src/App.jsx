@@ -24,7 +24,10 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/recipes" element={<AllRecipes />} />
+            <Route
+              path="https://sahk-frontend.onrender.com/recipes"
+              element={<AllRecipes />}
+            />
             <Route path="/recipes/:id" element={<RecipePage />} />
             <Route path="/recipes/new" element={<RecipeForm />} />
             <Route
