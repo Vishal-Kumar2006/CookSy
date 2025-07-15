@@ -1,14 +1,19 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-const  { getAllRecipes, createNewRecipe, getRecipeById, updateRecipe, deleteRecipeById} = require("../Controller/recipes");
-
+const {
+  getAllRecipes,
+  createNewRecipe,
+  getRecipeById,
+  updateRecipe,
+  deleteRecipeById,
+} = require("../Controller/recipes");
 
 // GET all recipes
-router.get('/', getAllRecipes);
+router.get("/", getAllRecipes);
 
 // POST -> create a new recipe
-router.post('/new', createNewRecipe);
+router.post("/new", createNewRecipe);
 
 router.get("/:id", getRecipeById);
 

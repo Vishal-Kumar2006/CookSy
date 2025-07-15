@@ -1,8 +1,9 @@
 import { useState } from "react";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
+import { MdDeleteOutline } from "react-icons/md";
 import "./RecipeForm.css";
 
 const CLOUDINARY_CLOUD_NAME = "dhj0i3rr1";
@@ -161,9 +162,10 @@ const RecipeForm = () => {
               onChange={(e) => handleInstructionChange(index, e.target.value)}
               className="recipe-input"
             />
-            <button type="button" onClick={(e) => handleDeleteInput(index)}>
-              🗑️
-            </button>
+            <MdDeleteOutline className="step-delete-btn" onClick={(e) => handleDeleteInput(index)} />
+            {/* <button type="button">
+              <MdDeleteOutline />
+            </button> */}
           </div>
         ))}
         <button type="button" onClick={handleAddInstruction}>

@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 
 const recipesRoute = require("./Routes/recipes.js");
 const userRoute = require("./Routes/user.js");
+const filteredRoutes = require("./Routes/filteredRoutes.js");
 
 const PORT = process.env.PORT || 5000;
 
@@ -26,9 +27,10 @@ mongoose
   .then(() => console.log("MongoDB Connected Successfully!"))
   .catch((err) => console.error("MongoDB Connection Error:", err));
 
-  
 // All Routes for Recipies
 app.use("/recipes", recipesRoute);
+
+app.use("/recipes/filter", filteredRoutes);
 
 app.use("/user", userRoute);
 
