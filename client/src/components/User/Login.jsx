@@ -20,22 +20,28 @@ const Login = () => {
     console.log(userData);
 
     try {
-      const response = await axios.post(
-        "https://sahk.onrender.com/user/log-in",
-        userData,
-        { withCredentials: true }
-      );
+      const response = await axios
+        .post("https://sahk.onrender.com/user/log-in", userData, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          localStorage.setItem("token", JSON.stringify(res.data.user));
+        })
+        .catch(() => {
+          setUser(null);
+          localStorage.removeItem("user");
+        });
 
       console.log(response);
-      alert("User logged In sucessfully.")
-      navigate("/")
+      alert("User logged In sucessfully.");
+      navigate("/");
     } catch (error) {
-        console.log("error", error);
-        if(error.response && error.response.status === 404) {
-            alert("Error: User not Exist with this email");
-        } else {
-            alert("Error: Internal Srever Error!!");
-        }
+      console.log("error", error);
+      if (error.response && error.response.status === 404) {
+        alert("Error: User not Exist with this email");
+      } else {
+        alert("Error: Internal Srever Error!!");
+      }
     }
   };
 

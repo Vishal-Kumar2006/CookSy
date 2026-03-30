@@ -1,36 +1,30 @@
 import "./Footer.css";
+import { FaFacebook, FaInstagram, FaYoutube, FaTwitter } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
 
 const Footer = () => {
   return (
     <div className="Footer">
-      <div className="recipes footer-components">
-        <a href="">this is a Link of Recipe Type</a>
-        <a href="">this is a Link of Recipe Type</a>
-        <a href="">this is a Link of Recipe Type</a>
-        <a href="">this is a Link of Recipe Type</a>
-        <a href="">this is a Link of Recipe Type</a>
-        <a href="">this is a Link of Recipe Type</a>
-        <a href="">this is a Link of Recipe Type</a>
+      <div className="footer-block">
+        <div className="footer-components">
+          <FaFacebook /> Face Book
+          <FaInstagram /> Face Book
+          <FaYoutube /> Face Book
+          <FaTwitter /> Face Book
+          <MdEmail /> Face Book
+        </div>
       </div>
 
-      <div className="link footer-components">
-        <a href="">This is a link towards our Link</a>
-        <a href="">This is a link towards our Link</a>
-        <a href="">This is a link towards our Link</a>
-        <a href="">This is a link towards our Link</a>
-        <a href="">This is a link towards our Link</a>
-        <a href="">This is a link towards our Link</a>
-        <a href="">This is a link towards our Link</a>
+      <div className="footer-block">
+        <div className="footer-components">
+          <a href="">link 1</a>
+        </div>
       </div>
 
-      <div className="contacts footer-components">
-        <a href="">This is our Contact Link</a>
-        <a href="">This is our Contact Link</a>
-        <a href="">This is our Contact Link</a>
-        <a href="">This is our Contact Link</a>
-        <a href="">This is our Contact Link</a>
-        <a href="">This is our Contact Link</a>
-        <a href="">This is our Contact Link</a>
+      <div className="footer-block">
+        <div className="footer-components">
+          <a href="">link 1</a>
+        </div>
       </div>
     </div>
   );

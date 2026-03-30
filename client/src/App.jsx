@@ -1,7 +1,5 @@
 import "./App.css";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import Footer from "./components/Body/Footer.jsx";
 import Navbar from "./components/Body/Navbar.jsx";
@@ -21,26 +19,20 @@ function App() {
     <div className="App">
       <Navbar />
       <div className="body">
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/recipes" element={<AllRecipes />} />
-            <Route path="/recipes/:id" element={<RecipePage />} />
-            <Route path="/recipes/new" element={<RecipeForm />} />
-            <Route
-              path="/recipes/filtered-recipies"
-              element={<ShowAllRecipies />}
-            />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/recipes" element={<AllRecipes />} />
+          <Route path="/recipes/:id" element={<RecipePage />} />
+          <Route path="/recipes/new" element={<RecipeForm />} />
+          <Route
+            path="/recipes/filtered-recipies"
+            element={<ShowAllRecipies />}
+          />
 
-            {/* <Route path="/recipes/new" element={<RecipeForm/>}/> */}
-
-            <Route path="/user/login" element={<Login />} />
-            {/* <Route path="/user/login" element={<TodoApp/>}/> */}
-
-            <Route path="/user/signup" element={<SignUp />} />
-            <Route path="/user/profile" element={<Profile />} />
-          </Routes>
-        </BrowserRouter>
+          <Route path="/user/login" element={<Login />} />
+          <Route path="/user/signup" element={<SignUp />} />
+          <Route path="/user/profile" element={<Profile />} />
+        </Routes>
       </div>
       <Footer />
     </div>

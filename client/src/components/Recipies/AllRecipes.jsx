@@ -8,6 +8,7 @@ const AllRecipes = ({ recipe }) => {
 
   useEffect(() => {
     axios.get("https://sahk.onrender.com/recipes").then((response) => {
+      console.log(response);
       setListOfRecipe(response.data);
     });
   }, []);

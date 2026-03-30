@@ -7,12 +7,27 @@ import "./Navbar.css";
 const Navbar = () => {
   const [menubtn, setMenuBtn] = useState(true);
   const [user, setUser] = useState(() => {
-    // Load user from localStorage on initial render
-    const savedUser = localStorage.getItem("user");
-    return savedUser ? JSON.parse(savedUser) : null;
+    try {
+      const savedUser = localStorage.getItem("user");
+      return savedUser && savedUser !== "undefined"
+        ? JSON.parse(savedUser)
+        : null;
+    } catch (error) {
+      console.error("Failed to parse user from localStorage:", error);
+      return null;
+    }
   });
 
   useEffect(() => {
+    axios
+      .get("https://sahk.onrender.com/user/profile", {
+        withCredentials: true,
+      })
+
+      .then((res) => {
+        console.log(res);
+      });
+
     // Only call API if user is not in localStorage
     if (!user) {
       axios
@@ -29,6 +44,8 @@ const Navbar = () => {
         });
     }
   }, [user]);
+
+  console.log(user);
 
   const handleLogout = () => {
     axios
@@ -49,6 +66,7 @@ const Navbar = () => {
       <div className="logo">
         <h2>SAHK</h2>
       </div>
+
       <button className="menu-btn" onClick={() => setMenuBtn(!menubtn)}>
         {menubtn ? (
           <IoMenu className="nav-menu" />
@@ -56,6 +74,7 @@ const Navbar = () => {
           <IoCloseSharp className="nav-menu" />
         )}
       </button>
+
       <div className={`options ${!menubtn ? "open" : ""}`}>
         <div className="links">
           <Link to="/" onClick={() => setMenuBtn(!menubtn)}>
@@ -74,6 +93,7 @@ const Navbar = () => {
             Create Recipe
           </Link>
         </div>
+
         <div className="user">
           {user ? (
             <>
