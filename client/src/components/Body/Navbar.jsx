@@ -6,59 +6,42 @@ import "./Navbar.css";
 
 const Navbar = () => {
   const [menubtn, setMenuBtn] = useState(true);
-  const [user, setUser] = useState(() => {
-    try {
-      const savedUser = localStorage.getItem("user");
-      return savedUser && savedUser !== "undefined"
-        ? JSON.parse(savedUser)
-        : null;
-    } catch (error) {
-      console.error("Failed to parse user from localStorage:", error);
-      return null;
-    }
-  });
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
+  // 🔥 Fetch user ONCE (cookie-based auth)
   useEffect(() => {
-    axios
-      .get("https://sahk.onrender.com/user/profile", {
-        withCredentials: true,
-      })
-
-      .then((res) => {
-        console.log(res);
-      });
-
-    // Only call API if user is not in localStorage
-    if (!user) {
-      axios
-        .get("https://sahk.onrender.com/user/profile", {
+    const fetchUser = async () => {
+      try {
+        const res = await axios.get("https://sahk.onrender.com/user/profile", {
           withCredentials: true,
-        })
-        .then((res) => {
-          setUser(res.data.user);
-          localStorage.setItem("user", JSON.stringify(res.data.user));
-        })
-        .catch(() => {
-          setUser(null);
-          localStorage.removeItem("user");
         });
-    }
-  }, [user]);
 
-  console.log(user);
+        setUser(res.data.user);
+      } catch (err) {
+        console.log(err.response?.data || err.message);
+        setUser(null);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const handleLogout = () => {
-    axios
-      .post(
+    fetchUser();
+  }, []);
+
+  // 🔥 Logout handler
+  const handleLogout = async () => {
+    try {
+      await axios.post(
         "https://sahk.onrender.com/user/logout",
         {},
-        { withCredentials: true }
-      )
-      .then(() => {
-        setUser(null);
-        localStorage.removeItem("user");
-      })
-      .catch((err) => console.error(err));
+        { withCredentials: true },
+      );
+
+      setUser(null);
+    } catch (err) {
+      console.log(err.response?.data || err.message);
+    }
   };
 
   return (
@@ -76,6 +59,7 @@ const Navbar = () => {
       </button>
 
       <div className={`options ${!menubtn ? "open" : ""}`}>
+        {/* 🔗 Links */}
         <div className="links">
           <Link to="/" onClick={() => setMenuBtn(!menubtn)}>
             Home
@@ -94,12 +78,18 @@ const Navbar = () => {
           </Link>
         </div>
 
+        {/* 👤 User Section */}
         <div className="user">
-          {user ? (
+          {loading ? (
+            <span className="loading">Loading...</span>
+          ) : user ? (
             <>
               <Link to="/user/profile" onClick={() => setMenuBtn(!menubtn)}>
-                <img src={user.image} alt="User" className="user-image" />
+                {user?.image && (
+                  <img src={user.image} alt="User" className="user-image" />
+                )}
               </Link>
+
               <button onClick={handleLogout} className="logout-btn">
                 Logout
               </button>

@@ -1,4 +1,4 @@
-const Recipe = require("../Schema/recipes");
+const Recipe = require("../Schema/recipes.js");
 
 const getAllRecipes = async (req, res) => {
   try {

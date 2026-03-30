@@ -1,5 +1,5 @@
 const routes = require("express").Router();
-const Recipies = require("../Schema/recipes");
+const Recipies = require("../Schema/recipes.js");
 
 routes.get("/mealType", async (req, res) => {
   const mealType = req.query.filterType;

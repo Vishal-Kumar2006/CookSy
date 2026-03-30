@@ -15,8 +15,18 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 
 // Whitelist (allowed-access) from origin for frontend
-app.use(cors({ credentials: true, origin: true }));
-app.use(cookieParser()); // 🧠 this line is important
+app.use(
+  cors({
+    // For Testing using LocalHost
+    origin: "http://localhost:5173",
+
+    // For/after deployment
+    // origin: "https://your-frontend-url.vercel.app",
+
+    credentials: true,
+  }),
+);
+app.use(cookieParser());
 
 // Connect to MongoDB
 mongoose
@@ -34,6 +44,6 @@ app.use("/recipes/filter", filteredRoutes);
 
 app.use("/user", userRoute);
 
-app.listen(PORT, (req, res) => {
+app.listen(PORT, () => {
   console.log(`Srever is Listning at Port http://localhost:${PORT}`);
 });

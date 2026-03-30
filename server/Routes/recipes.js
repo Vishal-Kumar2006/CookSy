@@ -7,7 +7,7 @@ const {
   getRecipeById,
   updateRecipe,
   deleteRecipeById,
-} = require("../Controller/recipes");
+} = require("../Controller/recipes.js");
 
 // GET all recipes
 router.get("/", getAllRecipes);

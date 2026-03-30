@@ -2,129 +2,164 @@ const User = require("../Schema/user");
 const {
   generateAccessToken,
   generateRefreshToken,
-} = require("../utils/generateTokens");
+} = require("../utils/generateTokens.js");
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 
+// 🔥 Reusable cookie config (no duplication)
+const cookieOptions = {
+  httpOnly: true,
+  secure: true,
+  sameSite: "None",
+};
+
+// SIGNUP Controller
 const signUpController = async (req, res) => {
   try {
     const { name, image, email, password } = req.body;
-    if(!name || !image || !email ||!password) res.status(500).json({message:"Input is required."});
-    
-    if(await User.findOne({ email: email })) res.status(409).json({message:"User already Exist with this Email."})
 
+    // Step 1: Proper validation
+    if (!name || !image || !email || !password) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
+
+    //  Step 2: Check existing user
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(409).json({ message: "User already exists" });
+    }
+
+    //  Step 3: Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = new User({ name, image, email, password: hashedPassword });
-    const savedUser = await user.save();
-    console.log(savedUser);
 
+    const user = new User({
+      name,
+      image,
+      email,
+      password: hashedPassword,
+    });
+
+    const savedUser = await user.save();
+
+    //   Step 4: Generate tokens
     const accessToken = generateAccessToken(savedUser);
     const refreshToken = generateRefreshToken(savedUser);
 
-    // Set cookies
+    //  Step 5: Set cookies
     res.cookie("accessToken", accessToken, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "Strict",
+      ...cookieOptions,
       maxAge: 15 * 60 * 1000,
     });
 
-
     res.cookie("refreshToken", refreshToken, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "Strict",
+      ...cookieOptions,
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
-    res.status(201).json({ message: "User created and logged in" });
+    return res.status(201).json({
+      message: "User created and logged in",
+      user: {
+        id: savedUser._id,
+        name: savedUser.name,
+        email: savedUser.email,
+        image: savedUser.image,
+      },
+    });
   } catch (err) {
-    console.log(err);
-    res.status(500).json({ error: err.message });
+    console.error("Signup Error:", err);
+    return res.status(500).json({ error: "Internal server error" });
   }
 };
 
+// Login Controller
 const loginController = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const currUser = await User.findOne({ email: email });
 
-    if (!currUser)  res.status(404).json({ message: "User not Exist with this email !"});
-
-    // ✅ Compare password
-    const isPasswordCorrect = await bcrypt.compare(password, currUser.password);
-    console.log(isPasswordCorrect)
-    if (!isPasswordCorrect) {
-      return res.status(401).json({ message: "Invalid credentials" });
+    //  Validation
+    if (!email || !password) {
+      return res.status(400).json({ message: "Email and password required" });
     }
 
-    const accessToken = generateAccessToken(currUser);
-    const refreshToken = generateRefreshToken(currUser);
+    const user = await User.findOne({ email });
 
-    // Set cookies
-    res.cookie("accessToken", accessToken, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "Strict",
-      maxAge: 15 * 60 * 1000,
-    });
-
-    res.cookie("refreshToken", refreshToken, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "Strict",
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-    });
-
-    res.status(201).json({ message: "User logged in sucessfully" });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ error: err.message });
-  }
-};
-
-// Profile and Logout will add tomorow
-const getProfileController = async (req, res) => {
-  try {
-    // Assuming `req.user` is set by an auth middleware after verifying the access token
-    const userId = req.user.id;
-
-    console.log(`User Id is : ${userId}`);
-    const user = await User.findById(userId).select("-password"); // exclude password
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
-    
-    console.log(user);
-    res.status(200).json({ user });
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+      return res.status(401).json({ message: "Invalid credentials" });
+    }
+
+    // Tokens
+    const accessToken = generateAccessToken(user);
+    const refreshToken = generateRefreshToken(user);
+
+    // Cookies
+    res.cookie("accessToken", accessToken, {
+      ...cookieOptions,
+      maxAge: 15 * 60 * 1000,
+    });
+
+    res.cookie("refreshToken", refreshToken, {
+      ...cookieOptions,
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
+
+    return res.status(200).json({
+      message: "Login successful",
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        image: user.image,
+      },
+    });
   } catch (err) {
-    console.error("Error fetching user profile:", err);
-    res.status(500).json({ error: err.message });
+    console.error("Login Error:", err);
+    return res.status(500).json({ error: "Internal server error" });
   }
 };
 
+// PROFILE Controller
+const getProfileController = async (req, res) => {
+  try {
+    // Safety check
+    if (!req.user) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+
+    const user = await User.findById(req.user.id).select("-password");
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    return res.status(200).json({ user });
+  } catch (err) {
+    console.error("Profile Error:", err);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+// Logout Controller
 const logoutController = (req, res) => {
   try {
-    res.clearCookie("accessToken", {
-      httpOnly: true,
-      sameSite: "Strict",
-      secure: process.env.NODE_ENV === "production",
-    });
+    //  Must match cookie options EXACTLY
+    res.clearCookie("accessToken", cookieOptions);
+    res.clearCookie("refreshToken", cookieOptions);
 
-    res.clearCookie("refreshToken", {
-      httpOnly: true,
-      sameSite: "Strict",
-      secure: process.env.NODE_ENV === "production",
-    });
-
-    res.status(200).json({ message: "User logged out successfully" });
+    return res.status(200).json({ message: "Logged out successfully" });
   } catch (err) {
-    console.error("Logout error:", err);
-    res.status(500).json({ error: err.message });
+    console.error("Logout Error:", err);
+    return res.status(500).json({ error: "Internal server error" });
   }
 };
 
-
-
-module.exports = { signUpController, loginController, getProfileController, logoutController };
+module.exports = {
+  signUpController,
+  loginController,
+  getProfileController,
+  logoutController,
+};
