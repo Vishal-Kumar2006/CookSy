@@ -21,7 +21,7 @@ app.use(
     // origin: "http://localhost:5173",
 
     // For/after deployment
-    origin: "https://sahk-frontend.onrender.com/",
+    origin: "https://sahk-frontend.onrender.com",
 
     credentials: true,
   }),
