@@ -1,9 +1,9 @@
-<h1>🍽️ SAHK – Swad Apne Haath Ka</h1>
+<h1>🍽️ CookSy - A modern recipe sharing platform to discover, create, and share delicious dishes.</h1>
 
 <p><strong>A MERN Stack Recipe-Sharing Platform for Food Lovers</strong></p>
 
 <p>
-🚀 <strong>SAHK (Swad Apne Haath Ka)</strong> is a full-stack web application where food lovers can 
+🚀 <strong>CookSy (Swad Apne Haath Ka)</strong> is a full-stack web application where food lovers can 
 explore, share, and discover recipes based on meal types and cooking methods. 
 It is built using the <strong>MERN stack (MongoDB, Express.js, React.js, Node.js)</strong> 
 and designed to celebrate the art of cooking with love. ❤️
@@ -12,7 +12,7 @@ and designed to celebrate the art of cooking with love. ❤️
 <hr/>
 <h2>🔗 LiveDemo</h2>
 <p>
-📂 <a href="https://sahk-frontend.onrender.com" target="">
+📂 <a href="https://sahkSy-frontend.onrender.com" target="">
 Live Demo
 </a>
 
@@ -22,7 +22,7 @@ Live Demo
 
 <h2>🔗 GitHub Repository</h2>
 <p>
-📂 <a href="https://github.com/Vishal-Kumar2006/SAHK" target="">
+📂 <a href="https://github.com/Vishal-Kumar2006/CookSy" target="">
 View Source Code on GitHub
 </a>
 </p>
@@ -88,8 +88,8 @@ View Source Code on GitHub
 
 <h3>1. Clone the Repository</h3>
 <pre>
-git clone https://github.com/yourusername/SAHK.git
-cd SAHK
+git clone https://github.com/yourusername/CookSy.git
+cd CookSy
 </pre>
 
 <h3>2. Install Dependencies</h3>
@@ -132,7 +132,7 @@ npm run dev
 <h2>🙌 Feedback</h2>
 <p>
 Feedback, suggestions, and collaboration ideas are always welcome! 
-Let’s make SAHK a flavorful platform for all food lovers. 🍛
+Let’s make CookSy a flavorful platform for all food lovers. 🍛
 </p>
 
 <hr/>
