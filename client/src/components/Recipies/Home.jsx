@@ -10,29 +10,8 @@ import Reveal from "../../Reveal.jsx";
 import { useState } from "react";
 
 const Home = () => {
-  const [recipe, setRecipe] = useState("");
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    axios
-      .get(`${API_URL}/recipes/search-recipe?recipe=${recipe}`)
-      .then((response) => {
-        setListOfRecipe(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-
   return (
     <div className="Home">
-      <Reveal>
-        <div className="Recipe-search-home">
-          <input type="text" placeholder="Search a Recipe" />
-          <button>Search</button>
-        </div>
-      </Reveal>
-
       <Reveal>
         <div className="home-types">
           <MealType />
