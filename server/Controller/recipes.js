@@ -26,6 +26,27 @@ const createNewRecipe = async (req, res) => {
   }
 };
 
+const searchRecipe = async (req, res) => {
+  const { recipe = "" } = req.query;
+  const limit = 12;
+
+  if (page < 1) {
+    return res.status(400).json({ message: "Invalid page number" });
+  }
+  try {
+    const recipes = await Recipe.find({
+      name: {
+        $regex: recipe,
+        $options: "i",
+      },
+    }).sort({ createdAt: -1 });
+
+    res.status(200).json(recipes);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 const getRecipeById = async (req, res) => {
   const id = req.params.id;
 
@@ -63,6 +84,7 @@ const deleteRecipeById = async (req, res) => {
 module.exports = {
   getAllRecipes,
   createNewRecipe,
+  searchRecipe,
   getRecipeById,
   updateRecipe,
   deleteRecipeById,

@@ -31,12 +31,6 @@ const Navbar = () => {
           <Link to="/recipes" onClick={() => setMenuBtn(!menubtn)}>
             All Recipes
           </Link>
-          {/* <Link to="/fast-food" onClick={() => setMenuBtn(!menubtn)}>
-            Fast Food
-          </Link>
-          <Link to="/fresh-food" onClick={() => setMenuBtn(!menubtn)}>
-            Fresh Food
-          </Link> */}
           <Link to="/recipes/new" onClick={() => setMenuBtn(!menubtn)}>
             Create Recipe
           </Link>

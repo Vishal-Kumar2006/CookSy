@@ -1,26 +1,31 @@
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import "./RecipeCard.css";
+import Reveal from "../../Reveal.jsx";
 
 const RecipeCard = ({ recipe }) => {
   const navigate = useNavigate();
-  
+
   const handleChange = () => {
-    navigate(`/recipes/${recipe._id}`, {state:recipe});
-  }
+    navigate(`/recipes/${recipe._id}`, { state: recipe });
+  };
 
   return (
-    <div className="RecipeCard">
-      <img src={recipe.image} alt="Recipe Image" className="recipe-image" />
-      <div className="recipe-info">
-        <div className="recipe-info-details">
-          <h3 className="recipe-name">{recipe.name}</h3>
-          <p className="recipe-cost" >₹{recipe.cost}</p>
-        </div>
+    <Reveal>
+      <div className="RecipeCard" onClick={handleChange}>
+        <img src={recipe.image} alt="Recipe Image" className="recipe-image" />
+        <div className="recipe-info">
+          <div className="recipe-info-details">
+            <h3 className="recipe-name">{recipe.name}</h3>
+            <p className="recipe-cost">₹{recipe.cost}</p>
+          </div>
+          <div className="recipe-info-sub-details">
+            <p className="">{recipe.instructions}</p>
 
-          <p className="recipe-instructions">{recipe.instructions}</p>
-        <button onClick={handleChange}>See Recipe in Detail</button>
+            <p>{recipe.ingredients.join(", ")}</p>
+          </div>
+        </div>
       </div>
-    </div>
+    </Reveal>
   );
 };
 

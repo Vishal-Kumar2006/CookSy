@@ -4,6 +4,7 @@ const router = express.Router();
 const {
   getAllRecipes,
   createNewRecipe,
+  searchRecipe,
   getRecipeById,
   updateRecipe,
   deleteRecipeById,
@@ -14,6 +15,8 @@ router.get("/", getAllRecipes);
 
 // POST -> create a new recipe
 router.post("/new", createNewRecipe);
+
+router.get("/search-recipe", searchRecipe);
 
 router.get("/:id", getRecipeById);
 

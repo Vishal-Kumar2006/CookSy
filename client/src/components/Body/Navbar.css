@@ -42,16 +42,15 @@
   color: rgb(231, 231, 231);
   font-size: 1.5rem;
   padding: 1.2rem 0.7rem 1rem 0.5rem;
-  transition: 0.1s ease-in-out;
+  border-radius: 3rem;
+  transition: 0.2s ease-in-out;
 }
 
 .links a:hover {
   cursor: pointer;
   color: rgb(255, 249, 220);
-  background-color: #ffffff56;
-
+  background-color: #ffffff7c;
   border-radius: 3rem;
-  /* box-shadow: 0 0 12px rgb(255, 0, 0); */
 }
 
 .user {

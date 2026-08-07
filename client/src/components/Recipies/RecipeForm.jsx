@@ -178,7 +178,7 @@ const RecipeForm = () => {
     foodType: "Vegetarian",
     cookingMethod: "Fried",
     cookingTime: 5,
-    cost: 0,
+    cost: "",
   });
 
   const handleInputChange = (e) => {
@@ -258,7 +258,7 @@ const RecipeForm = () => {
     <div className="RecipeForm">
       <h3>Create a New Recipe</h3>
       <form onSubmit={handleSubmit}>
-        <label>Recipe Name</label>
+        <label className="form-input-label">Recipe Name</label>
         <input
           name="name"
           placeholder="Enter Recipe Name"
@@ -267,7 +267,9 @@ const RecipeForm = () => {
           className="recipe-input"
         />
 
-        <label>Recipe Instructions (Step-by-step)</label>
+        <label className="form-input-label">
+          Recipe Instructions (Step-by-step)
+        </label>
         {recipeData.instructions.map((step, index) => (
           <div className="recipe-instructions" key={index}>
             <textarea
@@ -280,27 +282,25 @@ const RecipeForm = () => {
               className="step-delete-btn"
               onClick={(e) => handleDeleteInput(index)}
             />
-            {/* <button type="button">
-              <MdDeleteOutline />
-            </button> */}
           </div>
         ))}
         <button type="button" onClick={handleAddInstruction}>
           + Add Step
         </button>
 
-        <label>Recipe Image</label>
+        <label className="form-input-label">Recipe Image</label>
         <input
           type="file"
           name="image"
+          id="recipe-input-file"
           onChange={handleImageUpload}
           className="recipe-input"
         />
 
-        <label>Recipe Ingredients</label>
+        <label className="form-input-label">Recipe Ingredients</label>
         <Select
           className="recipe-input"
-          id="recipe-ingredients"
+          id="recipe-ingredient-input"
           isMulti
           closeMenuOnSelect={false}
           components={animatedComponents}
@@ -316,10 +316,11 @@ const RecipeForm = () => {
           }
         />
 
-        <label>Cost (per plate)</label>
+        <label className="form-input-label">Cost (per plate)</label>
         <input
           type="number"
           name="cost"
+          id="recipe-cost-input"
           onChange={handleInputChange}
           value={recipeData.cost}
           className="recipe-input"
@@ -327,7 +328,7 @@ const RecipeForm = () => {
 
         <div className="recipe-dropdown">
           <div className="single-dropdown">
-            <label>Meal Type</label>
+            <label className="form-input-label">Meal Type</label>
             <select
               name="mealType"
               className="recipe-input"
@@ -341,7 +342,7 @@ const RecipeForm = () => {
             </select>
           </div>
           <div className="single-dropdown">
-            <label>Food Type</label>
+            <label className="form-input-label">Food Type</label>
             <select
               name="foodType"
               className="recipe-input"
@@ -358,7 +359,7 @@ const RecipeForm = () => {
 
         <div className="recipe-dropdown">
           <div className="single-dropdown">
-            <label>Cooking Method</label>
+            <label className="form-input-label">Cooking Method</label>
             <select
               name="cookingMethod"
               className="recipe-input"
@@ -373,7 +374,7 @@ const RecipeForm = () => {
           </div>
 
           <div className="single-dropdown">
-            <label>Cooking Time</label>
+            <label className="form-input-label">Cooking Time</label>
             <select
               name="cookingTime"
               className="recipe-input"

@@ -18,12 +18,13 @@
   width: 50%;
   height: 1rem;
   border-radius: 0.5rem;
+  outline: none;
   border: 1px solid #ccc;
 }
 
 .Recipe-search-home button {
-  padding: 0.5rem 1rem;
-  font-size: 2rem;
+  padding: 0.7rem 1rem;
+  font-size: 1.5rem;
   background-color: #650000;
   border: none;
   border-radius: 0.5rem;
